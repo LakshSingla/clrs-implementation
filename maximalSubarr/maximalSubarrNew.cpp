@@ -4,6 +4,7 @@ using namespace std;
 const int MAX_ARR_SIZE = 100;
 
 int arr[MAX_ARR_SIZE];
+int arrSize = 16;
 
 //start  = starting index of the subarray till which you can search
 //end    = ending index of the subarray till which you can search
@@ -25,6 +26,10 @@ int main(){
 	int x[16] = {13, -3, -25, 20, -3, 16, 23, 18, 20, -7, 12,-5, -22, 15, -4, 7};	
 	//cout<<maximalCenterSubarray(x, {0, 6, 15, -1}).start;
 	//cout<<maximalCenterSubarray(x, {0, 6, 15, -1}).end;
+	Subarray max = maximalSubarray(x, {
+				0, -1, arrSize - 1, -1	
+			});
+	cout<<max.start<<"\t"<<max.middle<<"\t"<<max.end<<"\t"<<max.sum;
 	cout<<endl;
 	return 0;
 }
@@ -73,3 +78,34 @@ Subarray maximalSubarray(int* a, Subarray s){
 			}); 
 }
 */
+
+Subarray maximalSubarray(int *a, Subarray s){
+	if (s.start == s.end) {
+		return {
+			s.start, -1, s.end, a[s.start]
+		};
+	}
+
+	Subarray middleSumStruct = maximalCenterSubarray(a, {
+				s.start, (s.end - s.start)/2, s.end, -1	
+			});		
+
+	Subarray leftSumStruct   = maximalSubarray(a, {
+				s.start, -1, (s.end - s.start)/2, -1 
+			});
+
+	Subarray rightSumStruct  = maximalSubarray(a, {
+				(s.end-s.start)/2 + 1, -1, s.end, -1
+			});
+
+	if(middleSumStruct.sum > leftSumStruct.sum && middleSumStruct.sum > rightSumStruct.sum) {
+		return middleSumStruct;	
+	}
+
+	else if(leftSumStruct.sum > middleSumStruct.sum && leftSumStruct.sum > rightSumStruct.sum){
+		return leftSumStruct;
+	}
+
+	return rightSumStruct;
+
+}
