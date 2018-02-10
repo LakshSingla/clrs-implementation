@@ -1,3 +1,5 @@
-# Implementation of algorithms given in CLRS - Introduction to Algorithms
+# CLRS - Introduction to Algorithms
+
+## Implementation of algorithms given in CLRS 
 
 
