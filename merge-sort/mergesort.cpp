@@ -27,13 +27,17 @@ int main(){
 }
 
 //start and end are the indexes b/w where to merge
+
 void mergeSort(int start, int end) {
+	
 	//Only works in non trivial cases when array size is not 1 or 0
+	
 	if(start < end){
 		int mid = (start + end ) / 2;
 
 		//DIVIDE STEP
 		//Give me 2 sorted subarrays of that problem however you can
+		
 		mergeSort( start  , mid);
 		mergeSort( mid + 1, end);
 
@@ -43,7 +47,7 @@ void mergeSort(int start, int end) {
 	}
 }
 
-//2 sorted arrays are present from start - middle and middle - end
+//2 sorted arrays are present from start - middle and middle + 1 - end
 void merge(int start, int middle, int end){
 	int  left[MAX_ARR_LENGTH/2 + 2];
 	int right[MAX_ARR_LENGTH/2 + 2];
