@@ -19,8 +19,8 @@ int main () {
 	cout<<c.quotient<<"\t"<<c.remainder<<endl;
 }
 
-DivisionSolution recursiveDivide (int dividend, int divisor, int quotient,int remainder) {
+DivisionSolution recursiveDivide (int dividend, int divisor, int quotient ,int remainder) {
 	DivisionSolution ret  ;
-	if (dividend < divisor){ ret = {quotient, dividend} ; return ret;} 
+	if (dividend < divisor)return {quotient, dividend}; 
 	else return recursiveDivide( dividend - divisor, divisor, quotient + 1);
 }
