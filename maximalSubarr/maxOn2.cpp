@@ -17,6 +17,7 @@ int main () {
 			maxSum = contSum;
 			minIndex = i ; maxIndex = i;
 		}
+
 		for(int j = i + 1; j < ARRLENGTH; j++) {
 
 			contSum += arr[j];
@@ -25,6 +26,7 @@ int main () {
 				minIndex = i ; maxIndex = j;
 			}
 		}
+
 	}
 	cout<<minIndex<<"\t"<<maxIndex<<endl;
 	return 0;
