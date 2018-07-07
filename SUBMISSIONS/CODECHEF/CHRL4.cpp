@@ -1,35 +1,44 @@
 #include <iostream>
-#include <utility>
+#include <vector>
+#include <limits>
 
 #define MOD 1000000007
 
 using ull = unsigned long long; 
 
-using ulla = int[100000];
-
-ull ways_to_go (int n, int k) {
-	
-	static ulla cachek = {};
-	if(cachek[n]) return cachek[n];
-
-	ull ways = 0;
-
-	for(int i = 1; i <= k; i++) {
-		if (i > n) break;
-		else ways += 1 + ways_to_go(n-k, k);
+int main () {
+	ull n, k; 
+	std::cin >> n >> k; 
+	std::vector<ull>a(n);
+	std::vector<ull>cache(n);
+	for(int i = 0; i < n; ++i) {
+		ull inp;
+		std::cin >> inp;
+		a[i] = inp ;
 	}
 
-	cachek[n] = ways_to_go;
-
-	return ways_to_go;
-}
-
-ull min_price (int n, int k, const std::vector& v) {
-	if (n <= k) return v[n-1];
+	//std::cout << n << " " << k << std::endl;
 	
-	ull prices = 
-	for(int i = 1; i <= k; i++) {
+	//for(const auto& elem : a) std::cout << elem << "* ";
 
+	//std::cout << std::endl;
+
+	for(int i = 0; i < n; i++) {
+		if (i == 0) cache[i] = 0;
+		else if (i <= k) cache[i] = a[n-1];
+		else {
+			ull min = std::numeric_limits<ull>::max();
+			for (int j = i-1; j>=(i-k); j--){
+				ull dist = a[j] * cache[j];
+				//min	> a[j] * cache[j] ?
+				min = (min > dist ? dist : min);
+			}
+
+			cache[i] = min;
+		}
 	}
+
+	std::cout << cache[n-1] % MOD << std::endl; 
+	
 }
 
