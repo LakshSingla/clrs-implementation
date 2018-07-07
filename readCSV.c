@@ -1,8 +1,8 @@
-//Reads a CSV of format
 //<char[13]>, <char[30]>, <char>, <int>, <char>, <float>
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef struct {
 	char idno[14];
