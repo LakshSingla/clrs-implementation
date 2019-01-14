@@ -23,7 +23,7 @@ int main(void) {
 		0
 	};
 	for(auto it = arr.cbegin(); it != arr.cend(); ++it) {
-		auto lol =  ending_j.sum > *it;
+		auto lol =  ending_j.sum > 0;
 		SumInfo ending_j1;
 		if(lol)
 			ending_j1 = {
@@ -48,11 +48,11 @@ int main(void) {
 		}
 		ending_j = std::move(ending_j1);
 		std::cout << "Till " << std::distance(arr.cbegin(), it) << ": "\
-			<<std::distance(arr.cbegin(), whole.start) << " "\
+			<< std::distance(arr.cbegin(), whole.start) << " "\
 			<< std::distance(arr.cbegin(), whole.end) << " "\
 			<< whole.sum << std::endl;
 		std::cout << "Till " << std::distance(arr.cbegin(), it) << ": "\
-			<<std::distance(arr.cbegin(), ending_j1.start) << " "\
+			<< std::distance(arr.cbegin(), ending_j1.start) << " "\
 			<< std::distance(arr.cbegin(), ending_j1.end) << " "\
 			<< ending_j1.sum << std::endl;
 		std::cout << std::endl;
