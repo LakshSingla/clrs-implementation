@@ -52,10 +52,28 @@ void max_heapify(heap_struct *h, int x) {
 	}
 }
 
+void max_heapify_iter(heap_struct *h, int x) {
+	while(true) {
+		int left = left_child(x);
+		int right = right_child(x);
+		bool left_exists = left < h->heap_len;
+		bool right_exists = right < h->heap_len;
+		int max = x;
+		if(left_exists && h->heap[max] < h->heap[left]) max = left;
+		if(right_exists && h->heap[max] < h->heap[right]) max = right;
+		if (max != x) {
+			swap(h->heap + x, h->heap + max);
+			x = max;
+			continue;
+		}
+		break;
+	}
+}
+
 void make_max_heap(heap_struct *h) {
 	int a = h->heap_len / 2 - 1;
 	while(a >= 0) {
-		max_heapify(h, a);	
+		max_heapify_iter(h, a);	
 		--a;
 	}
 }
@@ -65,7 +83,7 @@ void heapsort(heap_struct *h) {
 	while(h->heap_len){
 		swap(h->heap, h->heap + h->heap_len-1);	
 		--(h->heap_len);
-		max_heapify(h, 0);
+		max_heapify_iter(h, 0);
 	}
 }
 
