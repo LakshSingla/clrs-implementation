@@ -53,7 +53,7 @@ void max_heapify(heap_struct *h, int x) {
 }
 
 void max_heapify_iter(heap_struct *h, int x) {
-	while(true) {
+	while(trxue) {
 		int left = left_child(x);
 		int right = right_child(x);
 		bool left_exists = left < h->heap_len;
